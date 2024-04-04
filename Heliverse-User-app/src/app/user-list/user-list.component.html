@@ -1,0 +1,54 @@
+<h1 class="h1">User's Data</h1>
+
+<div class="search-container my-3">
+  <input type="text" class="form-control" placeholder="Search by name" [(ngModel)]="searchQuery" (keyup)="filterUsers()">
+</div>
+<button mat-raised-button (click)="openTeamDialog()"class='btn btn-success mx-3 my-3'>My Team</button>
+
+
+<div class="filters row justify-content-center mb-4 ms-2 me-2">
+  <div class="col-md-4 col-sm-12 mb-2">
+    <select class="form-select" [(ngModel)]="filters.domain" (change)="filterUsers()">
+      <option value="">All Domains</option>
+      <option *ngFor="let domain of domains" [value]="domain">{{ domain }}</option>
+    </select>
+  </div>
+  <div class="col-md-4 col-sm-12 mb-2">
+    <select class="form-select" [(ngModel)]="filters.gender" (change)="filterUsers()">
+      <option value="">All Genders</option>
+      <option *ngFor="let gender of genders" [value]="gender">{{ gender }}</option>
+    </select>
+  </div>
+  <div class="col-md-4 col-sm-12">
+    <select class="form-select" [(ngModel)]="filters.availability" (change)="filterUsers()">
+      <option value="">All Availability</option>
+      <option value="true">Available</option>
+      <option value="false">Not Available</option>
+    </select>
+  </div>
+</div>
+
+<div *ngFor="let user of getPaginatedUsers()">  
+</div>
+
+<div class="cards-container container">
+  <div class="row">
+    <div class="col-lg-3" *ngFor="let user of getPaginatedUsers()">
+      <div class="card">
+        <img [src]="user.avatar" class="card-img-top" alt="User Avatar">
+        <div class="card-body">
+          <h2 class="card-title">{{ user.first_name }} {{ user.last_name }}</h2>
+          <p class="card-text">Gender:{{ user.gender }}</p>
+          <p class="card-text">Domain: {{ user.domain }}</p>
+          <p class="card-text">Availability: {{ user.available ? 'Available' : 'Not Available' }}</p>       
+          <button class="btn btn-primary btn-sm" (click)="addUserToTeam(user)">Add to Team</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pagination justify-content-center mt-3 my-2">
+  <button class="btn btn-primary" (click)="currentPage = currentPage - 1" [disabled]="currentPage === 1" style="margin-right: 10px;">Previous</button>
+  <button class="btn btn-primary" (click)="currentPage = currentPage + 1" [disabled]="getPaginatedUsers().length < usersPerPage">Next</button>
+</div>

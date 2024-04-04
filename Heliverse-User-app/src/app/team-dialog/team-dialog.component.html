@@ -1,0 +1,9 @@
+<h2 mat-dialog-title class="box">My Team</h2>
+<mat-dialog-content>
+  <ul>
+    <li *ngFor="let member of teamMembers" style="color: white;">
+      {{ member.first_name }} ({{ member.domain }} - {{ member.available ? 'Available' : 'Not Available' }})
+      <button class="remove-button" (click)="removeMember(member)">Remove</button>    
+    </li>
+  </ul>
+</mat-dialog-content>

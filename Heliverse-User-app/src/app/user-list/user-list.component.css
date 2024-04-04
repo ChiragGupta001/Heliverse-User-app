@@ -1,0 +1,26 @@
+.cards-container {
+  margin: 25px; 
+  display: inline-block;
+
+}
+.form-control {
+  width: 400px; 
+}
+.search-container {
+  display: flex;
+  justify-content: center;
+}
+.h1{
+text-align: center;
+margin: 10px;
+color: rgb(62, 59, 59);
+}
+.card-img-top {
+width: 60px;
+height: 75px;
+}
+
+.card{
+margin: 10px;
+border: 1px solid black;
+}
